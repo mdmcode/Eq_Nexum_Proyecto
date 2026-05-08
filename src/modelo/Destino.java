@@ -1,8 +1,11 @@
 package modelo;
 
+import java.io.Serializable;
 import java.util.LinkedList;
 
-public class Destino {
+public class Destino implements Serializable {
+    private static final long serialVersionUID = 1L;
+
     private String nombreLugar;
     private int diasPermanencia;
     private LinkedList<String> atractivos;

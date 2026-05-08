@@ -13,14 +13,6 @@ public final class PaqueteTuristicoMultiple extends PaqueteTuristico {
         this.obsequio = obsequio;
     }
 
-    public String getObsequio() {
-        return obsequio;
-    }
-
-    public void setObsequio(String obsequio) {
-        this.obsequio = obsequio;
-    }
-
     @Override
     public int calcularValorUnidad() {
         int duracionTotal = calcularDuracionTotalDias();

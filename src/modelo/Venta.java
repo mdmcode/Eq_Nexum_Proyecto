@@ -1,9 +1,12 @@
 package modelo;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
-public class Venta {
+public class Venta implements Serializable {
+    private static final long serialVersionUID = 1L;
+
     private int numero;
     private LocalDateTime fechaHoraGeneracion;
     private LocalDateTime fechaHoraActualizacion;

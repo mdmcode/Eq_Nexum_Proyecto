@@ -1,8 +1,11 @@
 package modelo;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class PaqueteTuristico {
+public abstract class PaqueteTuristico implements Serializable {
+    private static final long serialVersionUID = 1L;
+
     protected String codigo;
     protected String nombre;
     protected String tipologiaTurismo;
@@ -151,9 +154,7 @@ public class PaqueteTuristico {
         return totalDias;
     }
 
-    public int calcularValorUnidad() {
-        return 0;
-    }
+    public abstract int calcularValorUnidad();
 
     public int calcularValorTotal() {
         return calcularValorUnidad() * cantidadUnidades;
