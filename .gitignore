@@ -1,0 +1,12 @@
+build/
+dist/
+.nb-gradle/
+.gradle/
+nbproject/private/
+*.class
+*.log
+*.tmp
+*.swp
+*.iml
+.idea/
+.DS_Store
