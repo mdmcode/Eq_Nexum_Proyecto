@@ -45,6 +45,8 @@
     </target>
 
     <target name="run" depends="compile">
-        <java classname="controlador.Main" classpath="${classes.dir}" fork="true"/>
+        <java classname="controlador.Main" classpath="${classes.dir}" fork="true">
+            <jvmarg value="-Dfile.encoding=UTF-8"/>
+        </java>
     </target>
 </project>
