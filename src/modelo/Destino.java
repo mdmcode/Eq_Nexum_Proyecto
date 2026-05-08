@@ -14,7 +14,7 @@ public class Destino implements Serializable {
     public Destino(String nombreLugar, int diasPermanencia, LinkedList<String> atractivos,
                    boolean atractivosIncluidos) {
         this.nombreLugar = nombreLugar;
-        this.diasPermanencia = diasPermanencia;
+        setDiasPermanencia(diasPermanencia);
         this.atractivos = atractivos;
         this.atractivosIncluidos = atractivosIncluidos;
     }
@@ -32,6 +32,9 @@ public class Destino implements Serializable {
     }
 
     public void setDiasPermanencia(int diasPermanencia) {
+        if (diasPermanencia < 1) {
+            throw new IllegalArgumentException("diasPermanencia debe ser mínimo 1");
+        }
         this.diasPermanencia = diasPermanencia;
     }
 

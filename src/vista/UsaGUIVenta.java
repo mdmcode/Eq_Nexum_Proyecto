@@ -126,45 +126,49 @@ public class UsaGUIVenta extends JFrame {
         Scanner scanner = new Scanner(System.in);
         int numeroVenta = generarNumeroVenta(datosVentas);
 
-        System.out.println("\nCreación de cliente");
-        System.out.print("Tipo identificación (C/N): ");
-        char tipoId = scanner.nextLine().trim().toUpperCase().charAt(0);
-        System.out.print("Número identificación: ");
-        String numeroId = scanner.nextLine();
-        System.out.print("¿Es empresa? (true/false): ");
-        boolean empresa = Boolean.parseBoolean(scanner.nextLine());
-        System.out.print("Nombre: ");
-        String nombre = scanner.nextLine();
-        System.out.print("Email: ");
-        String email = scanner.nextLine();
-        System.out.print("Teléfono: ");
-        String telefono = scanner.nextLine();
-        System.out.print("Nombre contacto: ");
-        String nombreContacto = scanner.nextLine();
-        System.out.print("Porcentaje descuento: ");
-        double porcentaje = Double.parseDouble(scanner.nextLine());
+        try {
+            System.out.println("\nCreación de cliente");
+            System.out.print("Tipo identificación (C/N): ");
+            char tipoId = scanner.nextLine().trim().toUpperCase().charAt(0);
+            System.out.print("Número identificación: ");
+            String numeroId = scanner.nextLine();
+            System.out.print("¿Es empresa? (true/false): ");
+            boolean empresa = Boolean.parseBoolean(scanner.nextLine());
+            System.out.print("Nombre: ");
+            String nombre = scanner.nextLine();
+            System.out.print("Email: ");
+            String email = scanner.nextLine();
+            System.out.print("Teléfono: ");
+            String telefono = scanner.nextLine();
+            System.out.print("Nombre contacto: ");
+            String nombreContacto = scanner.nextLine();
+            System.out.print("Porcentaje descuento: ");
+            double porcentaje = Double.parseDouble(scanner.nextLine());
 
-        Cliente cliente = new Cliente(tipoId, numeroId, empresa, nombre, email, telefono, nombreContacto, porcentaje);
-        if (datosClientes == null) {
-            datosClientes = new ArrayList<>();
+            Cliente cliente = new Cliente(tipoId, numeroId, empresa, nombre, email, telefono, nombreContacto, porcentaje);
+            if (datosClientes == null) {
+                datosClientes = new ArrayList<>();
+            }
+            datosClientes.add(cliente);
+
+            ArrayList<PaqueteTuristico> paquetes = new ArrayList<>();
+            System.out.print("Cantidad de paquetes a agregar: ");
+            int cantidadPaquetes = Integer.parseInt(scanner.nextLine());
+            for (int i = 0; i < cantidadPaquetes; i++) {
+                System.out.println("\nPaquete " + (i + 1));
+                System.out.print("Categoría (U=Unico / M=Multiple): ");
+                char categoria = scanner.nextLine().trim().toUpperCase().charAt(0);
+                PaqueteTuristico paquete = crearPaquete(scanner, categoria);
+                paquetes.add(paquete);
+            }
+
+            LocalDateTime ahora = LocalDateTime.now();
+            Venta venta = new Venta(numeroVenta, ahora, ahora, cliente, paquetes, 'A');
+            datosVentas.add(venta);
+            System.out.println("Venta creada con número: " + numeroVenta);
+        } catch (IllegalArgumentException ex) {
+            System.out.println("Error de validación: " + ex.getMessage());
         }
-        datosClientes.add(cliente);
-
-        ArrayList<PaqueteTuristico> paquetes = new ArrayList<>();
-        System.out.print("Cantidad de paquetes a agregar: ");
-        int cantidadPaquetes = Integer.parseInt(scanner.nextLine());
-        for (int i = 0; i < cantidadPaquetes; i++) {
-            System.out.println("\nPaquete " + (i + 1));
-            System.out.print("Categoría (U=Unico / M=Multiple): ");
-            char categoria = scanner.nextLine().trim().toUpperCase().charAt(0);
-            PaqueteTuristico paquete = crearPaquete(scanner, categoria);
-            paquetes.add(paquete);
-        }
-
-        LocalDateTime ahora = LocalDateTime.now();
-        Venta venta = new Venta(numeroVenta, ahora, ahora, cliente, paquetes, 'A');
-        datosVentas.add(venta);
-        System.out.println("Venta creada con número: " + numeroVenta);
         return datosVentas;
     }
 

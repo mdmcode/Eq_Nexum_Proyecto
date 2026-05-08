@@ -21,7 +21,7 @@ public class Venta implements Serializable {
         this.fechaHoraActualizacion = fechaHoraActualizacion;
         this.suCliente = suCliente;
         this.susPaquetesTuristicos = susPaquetesTuristicos;
-        this.estado = estado;
+        setEstado(estado);
     }
 
     public int getNumero() {
@@ -69,7 +69,11 @@ public class Venta implements Serializable {
     }
 
     public void setEstado(char estado) {
-        this.estado = estado;
+        char valor = Character.toUpperCase(estado);
+        if (valor != 'A' && valor != 'P' && valor != 'C') {
+            throw new IllegalArgumentException("estado debe ser A, P o C");
+        }
+        this.estado = valor;
     }
 
     public int calcularCantidadTotalUnidadesPaquetes() {

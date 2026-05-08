@@ -25,9 +25,9 @@ public abstract class PaqueteTuristico implements Serializable {
                             boolean alimentacionTodo, boolean vuelo, boolean asistencia, int tarifaDia,
                             int cantidadUnidades) {
         this.codigo = codigo;
-        this.nombre = nombre;
+        setNombre(nombre);
         this.tipologiaTurismo = tipologiaTurismo;
-        this.descripcion = descripcion;
+        setDescripcion(descripcion);
         this.origen = origen;
         this.susDestinos = susDestinos;
         this.hotel = hotel;
@@ -35,8 +35,8 @@ public abstract class PaqueteTuristico implements Serializable {
         this.alimentacionTodo = alimentacionTodo;
         this.vuelo = vuelo;
         this.asistencia = asistencia;
-        this.tarifaDia = tarifaDia;
-        this.cantidadUnidades = cantidadUnidades;
+        setTarifaDia(tarifaDia);
+        setCantidadUnidades(cantidadUnidades);
     }
 
     public String getCodigo() {
@@ -52,7 +52,10 @@ public abstract class PaqueteTuristico implements Serializable {
     }
 
     public void setNombre(String nombre) {
-        this.nombre = nombre;
+        if (nombre == null || nombre.trim().length() < 10) {
+            throw new IllegalArgumentException("nombre debe tener mínimo 10 caracteres");
+        }
+        this.nombre = nombre.trim();
     }
 
     public String getTipologiaTurismo() {
@@ -68,6 +71,9 @@ public abstract class PaqueteTuristico implements Serializable {
     }
 
     public void setDescripcion(String descripcion) {
+        if (descripcion != null && descripcion.length() > 500) {
+            throw new IllegalArgumentException("descripcion no puede superar 500 caracteres");
+        }
         this.descripcion = descripcion;
     }
 
@@ -132,6 +138,9 @@ public abstract class PaqueteTuristico implements Serializable {
     }
 
     public void setTarifaDia(int tarifaDia) {
+        if (tarifaDia <= 0) {
+            throw new IllegalArgumentException("tarifaDia debe ser mayor que cero");
+        }
         this.tarifaDia = tarifaDia;
     }
 
@@ -140,6 +149,9 @@ public abstract class PaqueteTuristico implements Serializable {
     }
 
     public void setCantidadUnidades(int cantidadUnidades) {
+        if (cantidadUnidades < 1) {
+            throw new IllegalArgumentException("cantidadUnidades debe ser mínimo 1");
+        }
         this.cantidadUnidades = cantidadUnidades;
     }
 

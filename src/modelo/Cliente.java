@@ -16,14 +16,14 @@ public class Cliente implements Serializable {
 
     public Cliente(char tipoIdentificacion, String numeroIdentificacion, boolean empresa, String nombre,
                    String email, String telefono, String nombreContacto, double porcentajeDescuento) {
-        this.tipoIdentificacion = tipoIdentificacion;
-        this.numeroIdentificacion = numeroIdentificacion;
+        setTipoIdentificacion(tipoIdentificacion);
+        setNumeroIdentificacion(numeroIdentificacion);
         this.empresa = empresa;
         this.nombre = nombre;
         this.email = email;
         this.telefono = telefono;
         this.nombreContacto = nombreContacto;
-        this.porcentajeDescuento = porcentajeDescuento;
+        setPorcentajeDescuento(porcentajeDescuento);
     }
 
     public char getTipoIdentificacion() {
@@ -31,7 +31,11 @@ public class Cliente implements Serializable {
     }
 
     public void setTipoIdentificacion(char tipoIdentificacion) {
-        this.tipoIdentificacion = tipoIdentificacion;
+        char valor = Character.toUpperCase(tipoIdentificacion);
+        if (valor != 'C' && valor != 'N') {
+            throw new IllegalArgumentException("tipoIdentificacion debe ser C o N");
+        }
+        this.tipoIdentificacion = valor;
     }
 
     public String getNumeroIdentificacion() {
@@ -39,7 +43,17 @@ public class Cliente implements Serializable {
     }
 
     public void setNumeroIdentificacion(String numeroIdentificacion) {
-        this.numeroIdentificacion = numeroIdentificacion;
+        if (numeroIdentificacion == null || numeroIdentificacion.isBlank()) {
+            throw new IllegalArgumentException("numeroIdentificacion es obligatorio");
+        }
+        String valor = numeroIdentificacion.trim();
+        if (tipoIdentificacion == 'C' && valor.length() < 6) {
+            throw new IllegalArgumentException("numeroIdentificacion para cédula mínimo 6 dígitos");
+        }
+        if (tipoIdentificacion == 'N' && valor.length() != 9) {
+            throw new IllegalArgumentException("numeroIdentificacion para NIT debe tener 9 dígitos");
+        }
+        this.numeroIdentificacion = valor;
     }
 
     public boolean isEmpresa() {
@@ -87,6 +101,9 @@ public class Cliente implements Serializable {
     }
 
     public void setPorcentajeDescuento(double porcentajeDescuento) {
+        if (porcentajeDescuento < 0.0 || porcentajeDescuento > 70.0) {
+            throw new IllegalArgumentException("porcentajeDescuento debe estar entre 0.0 y 70.0");
+        }
         this.porcentajeDescuento = porcentajeDescuento;
     }
 
