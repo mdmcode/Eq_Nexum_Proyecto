@@ -3,6 +3,17 @@
     <property name="src.dir" value="src"/>
     <property name="build.dir" value="build"/>
     <property name="classes.dir" value="${build.dir}/classes"/>
+    <property name="test.src.dir" value="test"/>
+    <property name="test.classes.dir" value="${build.dir}/test/classes"/>
+    <property name="lib.dir" value="lib"/>
+
+    <path id="test.classpath">
+        <fileset dir="${lib.dir}">
+            <include name="**/*.jar"/>
+        </fileset>
+        <pathelement location="${classes.dir}"/>
+        <pathelement location="${test.classes.dir}"/>
+    </path>
 
     <target name="clean">
         <delete dir="${build.dir}"/>
@@ -11,6 +22,26 @@
     <target name="compile">
         <mkdir dir="${classes.dir}"/>
         <javac srcdir="${src.dir}" destdir="${classes.dir}" includeantruntime="false" encoding="UTF-8"/>
+    </target>
+
+    <target name="compile-test" depends="compile">
+        <mkdir dir="${test.classes.dir}"/>
+        <javac srcdir="${test.src.dir}" destdir="${test.classes.dir}" includeantruntime="false" encoding="UTF-8" classpathref="test.classpath"/>
+    </target>
+
+    <target name="test" depends="compile-test">
+        <mkdir dir="${build.dir}/test/results"/>
+        <junit printsummary="yes" haltonfailure="no">
+            <classpath>
+                <path refid="test.classpath"/>
+            </classpath>
+            <batchtest todir="${build.dir}/test/results">
+                <fileset dir="${test.src.dir}">
+                    <include name="**/*Test.java"/>
+                </fileset>
+            </batchtest>
+            <formatter type="plain"/>
+        </junit>
     </target>
 
     <target name="run" depends="compile">
