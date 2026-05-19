@@ -146,7 +146,7 @@ public class UsaGUIVenta extends JFrame {
         porcentajeField = new JTextField(10);
 
         int row = 0;
-        addField(panel, row++, "Tipo identificación:", tipoIdCombo);
+        addField(panel, row++, "Tipo identificación (C=Cédula, N=NIT):", tipoIdCombo);
         addField(panel, row++, "Número identificación:", numeroIdField);
         addField(panel, row++, "Empresa:", empresaCheck);
         addField(panel, row++, "Nombre:", nombreField);
@@ -177,7 +177,7 @@ public class UsaGUIVenta extends JFrame {
         tipoDesayunoField = new JTextField(15);
 
         int row = 0;
-        addField(panel, row++, "Categoría (U/M):", categoriaCombo);
+        addField(panel, row++, "Categoría (U=Único, M=Múltiple):", categoriaCombo);
         addField(panel, row++, "Código:", codigoPaqueteField);
         addField(panel, row++, "Nombre:", nombrePaqueteField);
         addField(panel, row++, "Tipología:", tipologiaField);
