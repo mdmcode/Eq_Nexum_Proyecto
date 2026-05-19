@@ -13,13 +13,19 @@
 ---
 
 ## 2. Objetivo del programa
-[Describir en 3–5 líneas qué hace el sistema.]
+Desarrollar un sistema de gestión de ventas de paquetes turísticos que permita registrar clientes,
+crear paquetes únicos o múltiples con sus destinos y servicios, y calcular valores totales con
+descuentos. El programa facilita la consulta, actualización y persistencia de ventas y clientes,
+ofreciendo un flujo interactivo para la administración de la información.
 
 ---
 
 ## 3. Alcance
-- **Incluye:** [Funcionalidades implementadas]
-- **No incluye:** [Limitaciones o funcionalidades fuera del alcance]
+- **Incluye:** registro de clientes, creación de paquetes turísticos (únicos y múltiples), gestión de ventas
+  (crear, consultar, actualizar estado), cálculo de totales y descuentos, y persistencia mediante archivos
+  de objetos para ventas y clientes.
+- **No incluye:** interfaz gráfica avanzada con formularios, conexión a bases de datos, autenticación de
+  usuarios, integración con sistemas externos de pagos ni reportes analíticos.
 
 ---
 
