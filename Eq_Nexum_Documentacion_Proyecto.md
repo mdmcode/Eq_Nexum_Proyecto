@@ -25,15 +25,18 @@
 
 ## 4. Arquitectura (MVC)
 ### 4.1 Modelo (`modelo`)
-- [Clase 1]: [responsabilidad]
-- [Clase 2]: [responsabilidad]
+- **Cliente:** gestiona datos y validaciones del cliente (identificación, contacto, descuento).
+- **Destino:** representa un destino turístico con días de permanencia y atractivos.
+- **PaqueteTuristico (abstracta):** base común de paquetes; valida datos y calcula duración/valor.
+- **PaqueteTuristicoUnico:** paquete con un destino principal, hotel y desayuno; calcula valor por duración.
+- **PaqueteTuristicoMultiple:** paquete con múltiples destinos y obsequio; calcula valor con incremento por cantidad de destinos.
+- **Venta:** agrupa cliente y paquetes; calcula totales, descuento y valor a pagar.
 
 ### 4.2 Vista (`vista`)
-- [Clase GUI 1]: [responsabilidad]
-- [Clase GUI 2]: [responsabilidad]
+- **UsaGUIVenta:** interfaz principal (consola/GUI) para crear y consultar ventas, manejar entradas y mostrar resultados.
 
 ### 4.3 Controlador (`controlador`)
-- [Clase Controlador]: [responsabilidad]
+- **Main:** punto de entrada que inicia la vista.
 
 ---
 
@@ -69,4 +72,9 @@
 ---
 
 ## 8. Consideraciones y observaciones
-- [Notas importantes, supuestos, validaciones, etc.]
+- El sistema valida datos clave (tipo de identificación, longitud, valores mínimos y rangos de descuento).
+- Los cálculos de venta se basan en tarifa diaria, duración total y cantidad de unidades.
+- Los paquetes múltiples incluyen incremento por cantidad de destinos.
+- Se permite persistencia local mediante archivos de objetos (`ventas.obj`, `clientes.obj`).
+- La vista usa `Scanner` (entrada por consola), por lo que la ejecución es interactiva.
+- El estado de la venta admite solo **A** (activa), **P** (procesada) y **C** (cancelada).
