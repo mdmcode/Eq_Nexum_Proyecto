@@ -13,27 +13,32 @@
 ---
 
 ## 2. Objetivo del programa
-[Describir en 3–5 líneas qué hace el sistema.]
+El sistema gestiona ventas de paquetes turísticos para una agencia, registrando clientes y paquetes (únicos o múltiples) con sus destinos. 
+Permite crear ventas, calcular valores totales y descuentos según el tipo de cliente, y consultar ventas por número, posición o estado. 
+Además, ofrece persistencia mediante archivos de objetos para ventas y clientes, y actualización de ventas existentes.
 
 ---
 
 ## 3. Alcance
-- **Incluye:** [Funcionalidades implementadas]
-- **No incluye:** [Limitaciones o funcionalidades fuera del alcance]
+- **Incluye:** creación y consulta de ventas, registro de clientes y paquetes turísticos, cálculo de totales y descuentos, actualización de ventas, generación y lectura de archivos de objetos (ventas/clientes).
+- **No incluye:** integración con bases de datos, interfaz gráfica completa (solo consola), pasarelas de pago, reportes avanzados o generación de facturación electrónica.
 
 ---
 
 ## 4. Arquitectura (MVC)
 ### 4.1 Modelo (`modelo`)
-- [Clase 1]: [responsabilidad]
-- [Clase 2]: [responsabilidad]
+- **Cliente:** datos del cliente, tipo de identificación y porcentaje de descuento.
+- **Destino:** información del lugar, días de permanencia y atractivos.
+- **PaqueteTuristico:** clase abstracta base para paquetes con cálculo de valores.
+- **PaqueteTuristicoUnico:** paquete con hotel y desayuno; calcula valor por duración.
+- **PaqueteTuristicoMultiple:** paquete con varios destinos y obsequio; calcula valor con incremento por destinos.
+- **Venta:** agrega cliente y paquetes, calcula totales, descuentos y valida estado.
 
 ### 4.2 Vista (`vista`)
-- [Clase GUI 1]: [responsabilidad]
-- [Clase GUI 2]: [responsabilidad]
+- **UsaGUIVenta:** menú principal en consola para crear/consultar/actualizar ventas y gestionar archivos.
 
 ### 4.3 Controlador (`controlador`)
-- [Clase Controlador]: [responsabilidad]
+- **Main:** punto de entrada que inicia la vista (UsaGUIVenta).
 
 ---
 
@@ -69,4 +74,7 @@
 ---
 
 ## 8. Consideraciones y observaciones
-- [Notas importantes, supuestos, validaciones, etc.]
+- El sistema valida datos clave: tipo y número de identificación, porcentaje de descuento, estado de ventas y días de permanencia.
+- Los archivos `ventas.obj` y `clientes.obj` se crean en el directorio de ejecución.
+- La vista es un menú por consola dentro de una clase JFrame; no hay interfaz gráfica completa.
+- Los estados de venta válidos son **A**, **P** y **C** (activa, pendiente, cancelada).
