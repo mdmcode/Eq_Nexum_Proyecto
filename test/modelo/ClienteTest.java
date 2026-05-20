@@ -38,4 +38,11 @@ public class ClienteTest {
         new Cliente('C', "123456", false, "Juan Perez", "jp@mail.com",
                 "3001234567", "Juan Perez", 80.0);
     }
+
+    // Nueva prueba para ID negativo
+    @Test(expected = IllegalArgumentException.class)
+    public void crearClienteConIdNegativo_debeLanzarExcepcion() {
+        new Cliente('C', "-1", false, "Juan Perez", "jp@mail.com",
+                "3001234567", "Juan Perez", 5.0);
+    }
 }
