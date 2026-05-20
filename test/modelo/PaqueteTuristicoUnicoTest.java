@@ -54,4 +54,20 @@ public class PaqueteTuristicoUnicoTest {
                 "P001", "Paquete Unico", "Recreacion", "Descripcion",
                 "Bogota", new ArrayList<>(), true, true, true, true, false, 1000, 0);
     }
+
+    // Nueva prueba - cantidad de unidades negativa
+    @Test(expected = IllegalArgumentException.class)
+    public void cantidadUnidadesNegativaDebeLanzarExcepcion() {
+        new PaqueteTuristicoUnico("Hotel Central", "Buffet",
+                "P001", "Paquete Unico", "Recreacion", "Descripcion",
+                "Bogota", new ArrayList<>(), true, true, true, true, false, 1000, -3);
+    }
+
+    // Nueva prueba - tarifa diaria negativa
+    @Test(expected = IllegalArgumentException.class)
+    public void tarifaDiaNegativaDebeLanzarExcepcion() {
+        new PaqueteTuristicoUnico("Hotel Central", "Buffet",
+                "P001", "Paquete Unico", "Recreacion", "Descripcion",
+                "Bogota", new ArrayList<>(), true, true, true, true, false, -100, 2);
+    }
 }
