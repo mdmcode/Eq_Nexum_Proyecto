@@ -5,7 +5,8 @@
 - **Integrantes:**
   1. Iván Fernando Flechas Plaza
   2. María Del Mar Mosquera Caicedo
-- **Fecha:** 19 de mayo de 2026
+  3. Samuel Esteban Vargas
+- **Fecha:** 20 de mayo de 2026
 - **Herramienta:** Apache NetBeans IDE 22
 - **Lenguaje:** Java
 - **Patrón:** Modelo–Vista–Controlador (MVC)
