@@ -5,3 +5,4 @@ Equipo: Nexum
 Integrantes (código - nombre completo):
 1. 22501366 - María Del Mar Mosquera Caicedo
 2. 22501614 - Iván Fernando Flechas Plaza
+3. 2248530 - Samuel Esteban Vargas Sandoval
