@@ -37,4 +37,23 @@ public class VentaTest {
     public void estadoVentaInvalido() {
         new Venta(1, LocalDateTime.now(), LocalDateTime.now(), null, new ArrayList<>(), 'X');
     }
+
+    // Nueva prueba para descuento mayor a 100%
+    @Test(expected = IllegalArgumentException.class)
+    public void descuentoMayorA100DebeLanzarExcepcion() {
+        Cliente cliente = new Cliente('C', "123456", false, "Juan Perez", "jp@mail.com",
+                "3001234567", "Juan Perez", 10.0);
+
+        ArrayList<Destino> destinos = new ArrayList<>();
+        destinos.add(new Destino("Bogota", 2, new LinkedList<>(), true));
+        PaqueteTuristicoUnico paquete = new PaqueteTuristicoUnico("Hotel Central", "Buffet",
+                "P001", "Paquete Unico", "Recreacion", "Descripcion",
+                "Bogota", destinos, true, true, true, true, false, 1000, 2);
+
+        ArrayList<PaqueteTuristico> paquetes = new ArrayList<>();
+        paquetes.add(paquete);
+
+        Venta venta = new Venta(1, java.time.LocalDateTime.now(), java.time.LocalDateTime.now(), cliente, paquetes, 'A');
+        venta.calcularDescuento(1000, 150); // 150% descuento
+    }
 }
