@@ -49,4 +49,14 @@
             <jvmarg value="-Dfile.encoding=UTF-8"/>
         </java>
     </target>
+
+    <target name="jar" depends="compile">
+        <mkdir dir="dist"/>
+        <jar destfile="dist/Eq_Nexum_Proyecto.jar" basedir="${classes.dir}">
+            <manifest>
+                <attribute name="Main-Class" value="controlador.Main"/>
+            </manifest>
+        </jar>
+    </target>
+
 </project>
